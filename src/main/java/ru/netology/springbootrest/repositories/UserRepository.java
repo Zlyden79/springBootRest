@@ -2,17 +2,17 @@ package ru.netology.springbootrest.repositories;
 
 import org.springframework.stereotype.Repository;
 import ru.netology.springbootrest.entities.Authorities;
-import ru.netology.springbootrest.entities.UserAccount;
+import ru.netology.springbootrest.entities.User;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Repository
 public class UserRepository {
-    private Map<UserAccount, Set<Authorities>> credentials;
+    private Map<User, Set<Authorities>> credentials;
 
     public UserRepository() {
-        this.credentials = new  ConcurrentHashMap<UserAccount, Set<Authorities>>();
+        this.credentials = new  ConcurrentHashMap<User, Set<Authorities>>();
         this.initialize();
     }
 
@@ -30,9 +30,9 @@ public class UserRepository {
         Set<Authorities> r = new HashSet<>();
         r.add(Authorities.READ);
 
-        UserAccount admin = new UserAccount("admin", "Ckj;ysqFlvbycrbqGfhjkm");
-        UserAccount poweruser = new UserAccount("poweruser", "password");
-        UserAccount user = new UserAccount("user", "qwerty");
+        User admin = new User("admin", "Ckj;ysqFlvbycrbqGfhjkm");
+        User poweruser = new User("poweruser", "password");
+        User user = new User("user", "qwerty");
 
 
         credentials.put(admin, rwd);
@@ -40,12 +40,12 @@ public class UserRepository {
         credentials.put(user, r);
     }
 
-    public boolean hasUser(UserAccount userAccount){
-        return (credentials.containsKey(userAccount));
+    public boolean hasUser(User user){
+        return (credentials.containsKey(user));
     }
 
     public List<Authorities> getUserAuthorities(String user, String password) {
-        UserAccount userAccount = new UserAccount(user, password);
+        User userAccount = new User(user, password);
         //если юзер есть в хранилище, возвращаем его права
         if (hasUser(userAccount)){
             return credentials.get(userAccount).stream().toList();

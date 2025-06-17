@@ -1,14 +1,12 @@
 package ru.netology.springbootrest.entities;
 
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
-public class UserAccount {
+public class User {
     private final String user;
     private String password;
 
-    public UserAccount(String user, String password) {
+    public User(String user, String password) {
         this.user = user;
         this.password = password;
     }
@@ -28,7 +26,7 @@ public class UserAccount {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        UserAccount that = (UserAccount) o;
+        User that = (User) o;
         return Objects.equals(user, that.user) && Objects.equals(password, that.password);
     }
 
