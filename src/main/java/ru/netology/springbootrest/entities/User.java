@@ -1,9 +1,15 @@
 package ru.netology.springbootrest.entities;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
 
 public class User {
+    @NotBlank
+    @Size(min=2, max=30)
     private String user;
+    @Size(min=6, max=30)
     private String password;
 
     public User() {}
