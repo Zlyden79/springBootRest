@@ -44,11 +44,10 @@ public class UserRepository {
         return (credentials.containsKey(user));
     }
 
-    public List<Authorities> getUserAuthorities(String user, String password) {
-        User userAccount = new User(user, password);
+    public List<Authorities> getUserAuthorities(User user) {
         //если юзер есть в хранилище, возвращаем его права
-        if (hasUser(userAccount)){
-            return credentials.get(userAccount).stream().toList();
+        if (hasUser(user)){
+            return credentials.get(user).stream().toList();
         }
         //иначе вернём пустой лист
         return new ArrayList<Authorities>();

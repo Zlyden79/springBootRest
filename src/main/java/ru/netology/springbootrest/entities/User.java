@@ -1,10 +1,22 @@
 package ru.netology.springbootrest.entities;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
+
 import java.util.Objects;
 
 public class User {
-    private final String user;
+    @NotBlank
+    @Size(min=2, max=30)
+    private String user;
+    @Size(min=6, max=30)
     private String password;
+
+    public User() {}
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public User(String user, String password) {
         this.user = user;
@@ -37,7 +49,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "UserAccount{" +
+        return "User{" +
                 "user='" + user + '\'' +
                 ", password='" + password + '\'' +
                 '}';
